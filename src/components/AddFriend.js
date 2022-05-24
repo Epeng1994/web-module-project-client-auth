@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import axios from 'axios'
+import axiosWithAuth from './AxiosWithAuth'
 
 const emptyFriend = {
     name:'',
@@ -17,7 +17,7 @@ const AddFriend = props=>{
     const onSubmit = e =>{
         e.preventDefault();
         const token = localStorage.getItem('token')
-        axios.post('http://localhost:9000/api/friends', newFriend, {headers:{Authorization:token}})
+        axiosWithAuth().post('http://localhost:9000/api/friends', newFriend)
             .then(res=>{
                 //console.log(res)
             })

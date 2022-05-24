@@ -1,12 +1,13 @@
 import React, {useState, useEffect} from 'react'
-import axios from 'axios'
+import axiosWithAuth from './AxiosWithAuth'
+import Friend from './Friend'
 
 const FriendList = props => {
     const [friendList, setFriendList] = useState([])
 
     useEffect(()=>{
         const token = localStorage.getItem('token')
-        axios.get('http://localhost:9000/api/friends', {headers:{Authorization:token}})
+        axiosWithAuth().get('http://localhost:9000/api/friends')
             .then(res=>{
                 //console.log(res.data)
                 setFriendList(res.data)
@@ -24,7 +25,7 @@ const FriendList = props => {
                : 
                friendList.map(a=>{
                     return(
-                        <div>{a.name} {a.email}</div>
+                        <Friend id = {a.id} name = {a.name} email ={a.email}/>
                     )
                 }) 
             }

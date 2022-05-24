@@ -15,13 +15,7 @@ const emptyLogin = {
   password: 'Tech'
 }
 
-const axiosWithAuth = () =>{
-  return axios.create({
-    headers:{
-      Authorization: localStorage.getItem('token')
-    }
-  })
-}
+
 
 function App() {
   const [loginInfo, setLoginInfo] = useState(emptyLogin)
